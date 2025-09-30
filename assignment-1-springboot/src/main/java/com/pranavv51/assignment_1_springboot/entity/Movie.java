@@ -13,7 +13,7 @@ public class Movie {
     private String genre;
     private String studio;
     private int rating;
-    private int year;
+    private int release_year;
 
     @Column(name = "poster_url")
     private String posterUrl;
@@ -25,7 +25,7 @@ public class Movie {
         this.genre = genre;
         this.studio = studio;
         this.rating = rating;
-        this.year = year;
+        this.release_year = year;
         this.posterUrl = posterUrl;
     }
 
@@ -69,12 +69,12 @@ public class Movie {
         this.rating = rating;
     }
 
-    public int getYear() {
-        return year;
+    public int getRelease_year() {
+        return release_year;
     }
 
-    public void setYear(int year) {
-        this.year = year;
+    public void setRelease_year(int release_year) {
+        this.release_year = release_year;
     }
 
     public String getPosterUrl() {
@@ -93,7 +93,7 @@ public class Movie {
                 ", genre='" + genre + '\'' +
                 ", studio='" + studio + '\'' +
                 ", rating=" + rating +
-                ", year=" + year +
+                ", year=" + release_year +
                 ", posterUrl='" + posterUrl + '\'' +
                 '}';
     }

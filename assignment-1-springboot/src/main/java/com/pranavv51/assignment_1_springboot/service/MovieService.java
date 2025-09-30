@@ -2,7 +2,6 @@ package com.pranavv51.assignment_1_springboot.service;
 
 import com.pranavv51.assignment_1_springboot.entity.Movie;
 import com.pranavv51.assignment_1_springboot.repository.MovieRepository;
-import com.pranavv51.assignment_1_springboot.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +24,7 @@ public class MovieService {
 
         //sort by which parameter?? we consider sorting it by year also...if year is passed as an argument, then we will sort based on the year(after retrieval of movies)
         if ("year".equalsIgnoreCase(sortBy)) {
-            movies.sort(Comparator.comparing(Movie::getYear));
+            movies.sort(Comparator.comparing(Movie::getRelease_year));
         }
         return movies;
     }

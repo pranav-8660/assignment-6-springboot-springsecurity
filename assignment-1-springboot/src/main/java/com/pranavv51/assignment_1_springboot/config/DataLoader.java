@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Configuration;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.stream.Collectors;
 
 @Configuration
 public class DataLoader {
@@ -32,7 +31,7 @@ public class DataLoader {
                         movie.setGenre(parts[1].trim());
                         movie.setStudio(parts[2].trim());
                         movie.setRating(Integer.parseInt(parts[3].trim()));
-                        movie.setYear(Integer.parseInt(parts[4].trim()));
+                        movie.setRelease_year(Integer.parseInt(parts[4].trim()));
                         movie.setPosterUrl(parts[5].trim());
                         movieRepository.save(movie);
                     }
