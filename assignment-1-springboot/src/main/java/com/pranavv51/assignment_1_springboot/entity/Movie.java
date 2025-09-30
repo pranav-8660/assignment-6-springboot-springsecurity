@@ -1,15 +1,21 @@
 package com.pranavv51.assignment_1_springboot.entity;
 
 
+import jakarta.persistence.*;
 
+@Entity(name = "movies")
 public class Movie {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long movie_id;
     private String film;
     private String genre;
     private String studio;
     private int rating;
     private int year;
+
+    @Column(name = "poster_url")
     private String posterUrl;
 
     public Movie(){}

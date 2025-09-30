@@ -1,22 +1,28 @@
 package com.pranavv51.assignment_1_springboot.entity;
 
 import java.util.Set;
+import jakarta.persistence.*;
 
+@Entity(name = "users")
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long user_id;
     private String username;
     private String password;
 
-    private Set<Movie> movies;
+    @ManyToMany
+    @JoinTable(name = "watchlist", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "movie_id") )
+    private Set<Movie> watchlist;
 
     public User() {
     }
 
-    public User(String username, String password, Set<Movie> movies) {
+    public User(String username, String password, Set<Movie> watchlist) {
         this.username = username;
         this.password = password;
-        this.movies = movies;
+        this.watchlist = watchlist;
     }
 
     public long getUser_id() {
@@ -43,12 +49,12 @@ public class User {
         this.password = password;
     }
 
-    public Set<Movie> getMovies() {
-        return movies;
+    public Set<Movie> getWatchlist() {
+        return watchlist;
     }
 
-    public void setMovies(Set<Movie> movies) {
-        this.movies = movies;
+    public void setWatchlist(Set<Movie> watchlist) {
+        this.watchlist = watchlist;
     }
 
     @Override
@@ -57,7 +63,7 @@ public class User {
                 "user_id=" + user_id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", movies=" + movies +
+                ", watchlist=" + watchlist +
                 '}';
     }
 }
