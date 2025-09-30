@@ -1,0 +1,43 @@
+package com.pranavv51.assignment_1_springboot.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
+
+import static org.springframework.security.config.Customizer.withDefaults;
+
+public class SpringSecurityConfig {
+
+    @Bean
+    public UserDetailsService userDetailsService() {
+        return new InMemoryUserDetailsManager(
+                User.withDefaultPasswordEncoder()
+                        .username("pranav")
+                        .password("12345")
+                        .roles("USER")
+                        .build(),
+                User.withDefaultPasswordEncoder()
+                        .username("vanarp")
+                        .password("54321")
+                        .roles("USER")
+                        .build()
+        );
+    }
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+                .csrf(csrf -> csrf.disable())   // disable CSRF
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/api/**").authenticated()
+                        .anyRequest().permitAll()
+                )
+                .httpBasic(withDefaults());     // enable Basic Auth
+
+        return http.build();
+    }
+}
