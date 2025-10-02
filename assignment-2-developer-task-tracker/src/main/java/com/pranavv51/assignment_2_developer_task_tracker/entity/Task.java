@@ -1,5 +1,6 @@
 package com.pranavv51.assignment_2_developer_task_tracker.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.pranavv51.assignment_2_developer_task_tracker.enums.Priority;
 import com.pranavv51.assignment_2_developer_task_tracker.enums.Status;
 import jakarta.persistence.*;
@@ -31,6 +32,7 @@ public class Task {
 
     @ManyToOne
     @JoinColumn(name = "developer_id")
+    @JsonBackReference
     private Developer developer;
 
     public Task(){}
