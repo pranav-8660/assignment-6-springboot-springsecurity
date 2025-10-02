@@ -1,5 +1,6 @@
 package com.pranavv51.assignment_2_developer_task_tracker.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class Developer {
 
     @ManyToOne
     @JoinColumn(name = "project_id")
+    @JsonBackReference
     private Project project;
 
     @OneToMany(mappedBy = "developer", cascade = CascadeType.ALL, orphanRemoval = true)

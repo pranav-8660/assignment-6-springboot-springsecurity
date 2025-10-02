@@ -1,5 +1,6 @@
 package com.pranavv51.assignment_2_developer_task_tracker.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class Project {
     private String description;
 
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Developer> developers;
 
     public Project(){}
